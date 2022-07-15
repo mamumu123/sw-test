@@ -3,6 +3,11 @@ const addResourcesToCache = async (resources) => {
   await cache.addAll(resources);
 };
 
+const lotList = [];
+for (let index = 1; index < 1000; index++) {
+  lotList.push(`/sw-test/gallery/${index}.jpg`);
+}
+
 const putInCache = async (request, response) => {
   const cache = await caches.open('v1');
   await cache.put(request, response);
@@ -69,6 +74,7 @@ self.addEventListener('install', (event) => {
       '/sw-test/gallery/bountyHunters.jpg',
       '/sw-test/gallery/myLittleVader.jpg',
       '/sw-test/gallery/snowTroopers.jpg',
+      ...lotList,
     ])
   );
 });
